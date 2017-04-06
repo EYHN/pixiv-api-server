@@ -1,0 +1,69 @@
+{
+  "name": "pixiv-api-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/main.js",
+  "scripts": {
+    "test": "cross-env NODE_ENV=test mocha dist/**/*.test.js -R spec --bail",
+    "start": "cross-env NODE_ENV=development node ./dist/main.js",
+    "dev": "gulp dev",
+    "clean": "rimraf dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EYHN/pixiv-api-server.git"
+  },
+  "author": "EYHN",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/EYHN/pixiv-api-server/issues"
+  },
+  "homepage": "https://github.com/EYHN/pixiv-api-server#readme",
+  "dependencies": {
+    "babel-polyfill": "^6.23.0",
+    "isomorphic-fetch": "^2.2.1",
+    "koa": "^2.2.0",
+    "lodash": "^4.17.4",
+    "nconf": "^0.8.4",
+    "pixiv-app-api": "^0.10.0",
+    "pixiv-img": "^0.3.1",
+    "ramda": "^0.23.0",
+    "typescript": "^2.2.2",
+    "winston": "^2.3.1"
+  },
+  "devDependencies": {
+    "@types/chai": "^3.4.35",
+    "@types/chai-as-promised": "^0.0.30",
+    "@types/gulp": "^4.0.2",
+    "@types/gulp-babel": "^6.1.29",
+    "@types/gulp-sourcemaps": "^0.0.30",
+    "@types/gulp-typescript": "^0.0.33",
+    "@types/isomorphic-fetch": "0.0.33",
+    "@types/koa": "^2.0.39",
+    "@types/lodash": "^4.14.61",
+    "@types/mocha": "^2.2.40",
+    "@types/nconf": "^0.0.34",
+    "@types/node": "^7.0.12",
+    "@types/ramda": "0.0.5",
+    "@types/sinon": "^2.1.1",
+    "@types/sinon-chai": "^2.7.27",
+    "@types/sinon-stub-promise": "^1.0.27",
+    "@types/winston": "^2.3.0",
+    "babel-core": "^6.24.0",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-stage-2": "^6.22.0",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "cross-env": "^4.0.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-sourcemaps": "^2.5.1",
+    "gulp-typescript": "^3.1.6",
+    "mocha": "^3.2.0",
+    "rimraf": "^2.6.1",
+    "sinon": "^2.1.0",
+    "sinon-chai": "^2.9.0",
+    "sinon-stub-promise": "^4.0.0",
+    "ts-node": "^3.0.2"
+  }
+}
