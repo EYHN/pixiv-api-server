@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var path = require('path');
 var fs = require('fs');
-var fetch = require("isomorphic-fetch");
+require("isomorphic-fetch");
 var pixivimg = function pixivimg(imgUrl) {
     return new Promise(function (resolve, reject) {
         if (typeof imgUrl !== 'string') {

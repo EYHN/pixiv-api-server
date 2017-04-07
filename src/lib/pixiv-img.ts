@@ -1,11 +1,11 @@
-import * as stream from 'stream';
+import { Readable } from 'stream';
 import { encode } from 'punycode';
 const path = require('path');
 const fs = require('fs');
-import * as fetch from "isomorphic-fetch"
+import "isomorphic-fetch"
 
 const pixivimg = (imgUrl:string) => {
-  return new Promise<stream>((resolve, reject)=>{
+  return new Promise<Readable>((resolve, reject)=>{
     if (typeof imgUrl !== 'string') {
 			reject(new TypeError('Expected a string'));
 		}
@@ -14,7 +14,7 @@ const pixivimg = (imgUrl:string) => {
         Referer: 'http://www.pixiv.net/'
       }
     }).then((res)=>{
-      return <stream><any> res.body
+      return <Readable><any> res.body
     }))
   })
 }
