@@ -3,6 +3,7 @@ import * as winston from 'winston';
 import * as nconf from 'nconf';
 import { LogCallback } from "winston";
 import * as _ from 'lodash'
+import 'babel-polyfill';
 
 const IS_PROD = nconf.get('IS_PROD');
 const IS_TEST = nconf.get('IS_TEST');

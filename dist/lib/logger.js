@@ -7,6 +7,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var winston = require("winston");
 var nconf = require("nconf");
 var _ = require("lodash");
+require("babel-polyfill");
 var IS_PROD = nconf.get('IS_PROD');
 var IS_TEST = nconf.get('IS_TEST');
 var ENABLE_LOGS_IN_TEST = nconf.get('ENABLE_CONSOLE_LOGS_IN_TEST') === 'true';

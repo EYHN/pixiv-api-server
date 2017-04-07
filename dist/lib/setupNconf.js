@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var nconf = require("nconf");
 var path_1 = require("path");
+require("babel-polyfill");
 var PATH_TO_CONFIG = path_1.join(path_1.resolve(__dirname, '../../config.json'));
 function setupNconf() {
     var file = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : PATH_TO_CONFIG;

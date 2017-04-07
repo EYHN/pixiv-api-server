@@ -1,5 +1,7 @@
 import pixivimg from '../lib/pixiv-img';
 import * as koa from 'koa';
+import 'babel-polyfill';
+
 const pximg = async (ctx:koa.Context)=>{
   ctx.type = 'text/plain; charset=utf-8';
   ctx.type = 'image/png';

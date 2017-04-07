@@ -3,6 +3,7 @@ import { encode } from 'punycode';
 const path = require('path');
 const fs = require('fs');
 import "isomorphic-fetch"
+import 'babel-polyfill';
 
 const pixivimg = (imgUrl:string) => {
   return new Promise<Readable>((resolve, reject)=>{

@@ -1,5 +1,6 @@
 import logger from '../lib/logger';
 import * as koa from 'koa';
+import 'babel-polyfill';
 
 const log:koa.Middleware = async function (ctx, next) {
   const start = new Date();

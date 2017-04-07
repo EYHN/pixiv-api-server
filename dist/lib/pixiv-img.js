@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var path = require('path');
 var fs = require('fs');
 require("isomorphic-fetch");
+require("babel-polyfill");
 var pixivimg = function pixivimg(imgUrl) {
     return new Promise(function (resolve, reject) {
         if (typeof imgUrl !== 'string') {

@@ -1,5 +1,6 @@
 import * as nconf from 'nconf';
 import { join, resolve } from 'path';
+import 'babel-polyfill';
 
 const PATH_TO_CONFIG = join(resolve(__dirname, '../../config.json'));
 
