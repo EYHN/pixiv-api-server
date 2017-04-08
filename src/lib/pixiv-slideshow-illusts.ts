@@ -1,9 +1,11 @@
+import cachedFetch from './cachedFetch';
 import pixivimg from './pixiv-img';
 import * as cheerio from 'cheerio';
 import 'isomorphic-fetch';
 import 'babel-polyfill';
+const utils = require('utility');
 
-export interface pixivBackgroundSlideshow {
+interface pixivSlideshow {
   "pixivBackgroundSlideshow.illusts":{
     landscape?:{
       illust_id?:string,
@@ -22,15 +24,15 @@ export interface pixivBackgroundSlideshow {
 }
 
 export const pixivSlideshowIllusts = async ()=>{
-  let req = await fetch("http://www.pixiv.net/");
+  let req = await cachedFetch("http://www.pixiv.net/");
   let text = await req.text();
   let $ = cheerio.load(text);
-  let data = JSON.parse($("input#init-config").attr("value")) as pixivBackgroundSlideshow;
+  let data = JSON.parse($("input#init-config").attr("value")) as pixivSlideshow;
   return data["pixivBackgroundSlideshow.illusts"].landscape
 }
 
 export const pixivSlideshowIllustImg = async ()=>{
   let illusts = await pixivSlideshowIllusts();
-  let illust = illusts[parseInt((Math.random() * (illusts.length - 1) + 0.5).toString())];
+  let illust = illusts[utils.random(illusts.length - 1)];
   return pixivimg(illust.url["1200x1200"]);
 }

@@ -3,10 +3,12 @@
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var cachedFetch_1 = require("./cachedFetch");
 var pixiv_img_1 = require("./pixiv-img");
 var cheerio = require("cheerio");
 require("isomorphic-fetch");
 require("babel-polyfill");
+var utils = require('utility');
 exports.pixivSlideshowIllusts = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
     var req, text, $, data;
     return regeneratorRuntime.wrap(function _callee$(_context) {
@@ -14,7 +16,7 @@ exports.pixivSlideshowIllusts = _asyncToGenerator(regeneratorRuntime.mark(functi
             switch (_context.prev = _context.next) {
                 case 0:
                     _context.next = 2;
-                    return fetch("http://www.pixiv.net/");
+                    return cachedFetch_1.default("http://www.pixiv.net/");
 
                 case 2:
                     req = _context.sent;
@@ -45,7 +47,7 @@ exports.pixivSlideshowIllustImg = _asyncToGenerator(regeneratorRuntime.mark(func
 
                 case 2:
                     illusts = _context2.sent;
-                    illust = illusts[parseInt((Math.random() * (illusts.length - 1) + 0.5).toString())];
+                    illust = illusts[utils.random(illusts.length - 1)];
                     return _context2.abrupt("return", pixiv_img_1.default(illust.url["1200x1200"]));
 
                 case 5:

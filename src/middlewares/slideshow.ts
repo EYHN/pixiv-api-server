@@ -1,8 +1,8 @@
-import { pixivSlideshowIllustImg } from '../lib/pixiv-slideshow-illusts';
+import { pixivSlideshowIllustImg,pixivSlideshowIllusts } from '../lib/pixiv-slideshow-illusts';
 import * as koa from 'koa';
 import 'babel-polyfill';
 
-const slideshow = async (ctx:koa.Context)=>{
+export const slideshow = async (ctx:koa.Context)=>{
   ctx.type = 'text/plain; charset=utf-8';
   ctx.type = 'image/png';
   ctx.type = '.png';
@@ -11,4 +11,8 @@ const slideshow = async (ctx:koa.Context)=>{
   ctx.response.body = await pixivSlideshowIllustImg();
 }
 
-export default slideshow;
+export const slideshowREST = async (ctx:koa.Context)=>{
+  ctx.type = 'application/json; charset=utf-8';
+  ctx.status = 200;
+  ctx.response.body = await pixivSlideshowIllusts();
+}

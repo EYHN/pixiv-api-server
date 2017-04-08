@@ -9,7 +9,7 @@ var pixivimg = require("./pixiv-img");
 describe('pixiv-slideshow-illusts', function () {
     var data = {
         "pixivBackgroundSlideshow.illusts": {
-            portrait: [],
+            portrait: new Array(),
             landscape: [{ url: { "1200x1200": "123" } }, { url: { "1200x1200": "123" } }, { url: { "1200x1200": "123" } }, { url: { "1200x1200": "123" } }, { url: { "1200x1200": "123" } }, { url: { "1200x1200": "123" } }, { url: { "1200x1200": "321" } }, { url: { "1200x1200": "1111" } }]
         }
     };

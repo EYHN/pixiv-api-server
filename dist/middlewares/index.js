@@ -9,7 +9,8 @@ require("babel-polyfill");
 var InjectionMiddlewares = function InjectionMiddlewares(app) {
     var router = new Router();
     router.get('/pximg', pximg_1.default);
-    router.get('/slideshow', slideshow_1.default);
+    router.get('/slideshow', slideshow_1.slideshow);
+    router.post('/slideshow', slideshow_1.slideshowREST);
     app.use(log_1.default);
     app.use(router.routes()).use(router.allowedMethods());
 };
