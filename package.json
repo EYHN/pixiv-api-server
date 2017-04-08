@@ -34,7 +34,8 @@
     "pixiv-img": "^0.3.1",
     "ramda": "^0.23.0",
     "typescript": "^2.2.2",
-    "winston": "^2.3.1"
+    "winston": "^2.3.1",
+    "cross-env": "^4.0.0"
   },
   "devDependencies": {
     "@types/chai": "^3.4.35",
@@ -65,7 +66,6 @@
     "chai-as-promised": "^6.0.0",
     "concat-stream": "^1.6.0",
     "coveralls": "^2.13.0",
-    "cross-env": "^4.0.0",
     "fetch-mock": "^5.9.4",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
