@@ -12,7 +12,8 @@ require("babel-polyfill");
 setupNconf_1.default();
 var app = new koa();
 middlewares_1.default(app);
-var port = Nconf.get("port") || 3000;
+Nconf.set("port", process.env["PORT"] || 3000);
+var port = Nconf.get("port");
 http.createServer(app.callback()).listen(port, function () {
     logger_1.default.info("Express server listening on port " + port);
 });

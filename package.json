@@ -6,7 +6,7 @@
   "scripts": {
     "test": "cross-env NODE_ENV=test istanbul cover node_modules/mocha/bin/_mocha",
     "start": "cross-env NODE_ENV=production node ./dist/main.js",
-    "dev": "gulp dev && ",
+    "dev": "gulp dev",
     "clean": "rimraf dist",
     "build": "gulp build",
     "coverage": "cat ./coverage/lcov.info | coveralls"
