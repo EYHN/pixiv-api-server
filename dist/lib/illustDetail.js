@@ -1,12 +1,16 @@
 "use strict";
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var pixiv_img_1 = require("./pixiv-img");
 var wait_1 = require("../util/wait");
 var later = require("later");
 var logger_1 = require("./logger");
 var Pixiv = require("pixiv-app-api");
+var utils = require('utility');
 var pixiv = new Pixiv();
 var DetailIllusts = [];
 var updating = false;
@@ -61,9 +65,9 @@ exports.updateDetailIllust = _asyncToGenerator(regeneratorRuntime.mark(function 
                 case 14:
                     _json = _context.sent;
 
-                    newIllusts.push(_json);
+                    newIllusts.push.apply(newIllusts, _toConsumableArray(_json.illusts));
                     _context.next = 18;
-                    return wait_1.default(100);
+                    return wait_1.default(10);
 
                 case 18:
                     _context.next = 9;
@@ -93,5 +97,17 @@ exports.updateDetailIllust = _asyncToGenerator(regeneratorRuntime.mark(function 
         }
     }, _callee, undefined, [[4, 24]]);
 }));
-exports.detailillust = function () {};
+var defaultDetailIllustOption = {
+    size: "medium"
+};
+exports.detailillust = function () {
+    var option = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultDetailIllustOption;
+
+    var DetailIllustOption = Object.assign({}, defaultDetailIllustOption, option);
+    if (DetailIllusts.length == 0) {
+        return;
+    }
+    var imgsrc = DetailIllusts[utils.random(0, DetailIllusts.length - 1)].imageUrls[DetailIllustOption.size];
+    return pixiv_img_1.default(imgsrc);
+};
 //# sourceMappingURL=illustDetail.js.map

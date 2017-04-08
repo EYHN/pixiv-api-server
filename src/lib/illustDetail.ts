@@ -1,11 +1,13 @@
+import pixivimg from './pixiv-img';
 import wait from '../util/wait';
 import * as later from 'later';
 import logger from "./logger"
 const Pixiv = require("pixiv-app-api")
+const utils = require('utility');
 
 const pixiv = new Pixiv();
 
-let DetailIllusts = [];
+let DetailIllusts:any = [];
 
 let updating = false;
 
@@ -28,8 +30,8 @@ export const updateDetailIllust = async ()=>{
         break;
       }
       const json = await pixiv.next();
-      newIllusts.push(json);
-      await wait(100);
+      newIllusts.push(...json.illusts);
+      await wait(10);
     }
     DetailIllusts = newIllusts;
     logger.info('update detail illust finish !');
@@ -41,6 +43,22 @@ export const updateDetailIllust = async ()=>{
   updating = false;
 }
 
-export const detailillust = ()=>{
+interface detailillustI {
+  size?: "squareMedium" | "medium" | "large",
+}
 
+const defaultDetailIllustOption:detailillustI = {
+  size: "medium"
+}
+
+export const detailillust = (option:detailillustI = defaultDetailIllustOption) => {
+  let DetailIllustOption = {
+    ...defaultDetailIllustOption,
+    ...option
+  }
+  if(DetailIllusts.length == 0){
+    return
+  }
+  let imgsrc = DetailIllusts[utils.random(0,DetailIllusts.length - 1)].imageUrls[DetailIllustOption.size];
+  return pixivimg(imgsrc);
 }
