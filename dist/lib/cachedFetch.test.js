@@ -8,10 +8,10 @@ var cachedFetch = require("./cachedFetch");
 var fetchMock = require("fetch-mock");
 describe('cachedFetch', function () {
     var data = { a: 1 };
-    var url = "https://huaji8.top/cachedFetch";
+    var url = "https://huaji8.top";
     afterEach(function () {
         cachedFetch.Storage.clear();
-        fetchMock.reset();
+        fetchMock.restore();
     });
     it("fetch twice called once", _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
         var response, res, json;
@@ -72,21 +72,22 @@ describe('cachedFetch', function () {
                         });
 
                         fetchMock.getOnce(url, response);
-                        _context2.next = 4;
+                        console.log(response.bodyUsed);
+                        _context2.next = 5;
                         return cachedFetch.default(url);
 
-                    case 4:
+                    case 5:
                         res = _context2.sent;
-                        _context2.next = 7;
+                        _context2.next = 8;
                         return res.json();
 
-                    case 7:
+                    case 8:
                         json = _context2.sent;
 
                         test_helper_1.expect(json).to.be.deep.equal(data);
                         test_helper_1.expect(cachedFetch.Storage.size).to.be.eql(0);
 
-                    case 10:
+                    case 11:
                     case "end":
                         return _context2.stop();
                 }

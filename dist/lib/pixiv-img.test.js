@@ -17,7 +17,7 @@ describe('pixiv-img', function () {
         });
     });
     afterEach(function () {
-        fetchMock.reset();
+        fetchMock.restore();
     });
     it("fetch pixiv img", function (done) {
         pixiv_img_1.default(fetchURL).then(function (res) {

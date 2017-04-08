@@ -18,7 +18,7 @@ describe('pixiv-slideshow-illusts', function () {
         fetchMock.getOnce("http://www.pixiv.net/", html);
     });
     afterEach(function () {
-        fetchMock.reset();
+        fetchMock.restore();
         test_helper_1.sandbox.restore();
     });
     it("return pixivBackgroundSlideshow.illusts from input in the html ", function (done) {

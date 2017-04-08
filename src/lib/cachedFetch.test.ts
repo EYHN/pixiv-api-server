@@ -4,11 +4,11 @@ import * as fetchMock from 'fetch-mock';
 
 describe('cachedFetch', () => {
   const data = { a: 1 };
-  const url = "https://huaji8.top/cachedFetch"
+  const url = "https://huaji8.top"
 
   afterEach(() => {
     cachedFetch.Storage.clear();
-    fetchMock.reset();
+    fetchMock.restore();
   });
 
   it("fetch twice called once", async () => {
@@ -34,6 +34,7 @@ describe('cachedFetch', () => {
       status: 404
     });
     fetchMock.getOnce(url, response)
+    console.log(response.bodyUsed);
     let res = await cachedFetch.default(url);
     let json = await res.json();
     expect(json).to.be.deep.equal(data);

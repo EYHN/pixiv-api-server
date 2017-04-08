@@ -17,7 +17,7 @@ describe('pixiv-img', () => {
   });
 
   afterEach(() => {
-    fetchMock.reset()
+    fetchMock.restore()
   });
 
   it("fetch pixiv img", (done) => {

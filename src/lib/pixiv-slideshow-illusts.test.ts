@@ -28,7 +28,7 @@ describe('pixiv-slideshow-illusts', () => {
   });
 
   afterEach(() => {
-    fetchMock.reset()
+    fetchMock.restore()
     sandbox.restore()
   });
 
