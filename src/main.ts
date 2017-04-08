@@ -14,7 +14,9 @@ const app = new koa();
 
 InjectionMiddlewares(app);
 
-const port = Nconf.get("port") || 3000;
+Nconf.set("port",process.env["PORT"] || 3000)
+
+const port = Nconf.get("port");
 
 http.createServer(app.callback()).listen(port,()=>{
   logger.info(`Express server listening on port ${port}`);
