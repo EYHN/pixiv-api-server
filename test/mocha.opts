@@ -1,0 +1,4 @@
+dist/**/*.test.js 
+-R spec 
+--bail 
+-t 10000

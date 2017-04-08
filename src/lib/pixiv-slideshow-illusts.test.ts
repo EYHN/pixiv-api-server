@@ -9,17 +9,14 @@ describe('pixiv-slideshow-illusts', () => {
     "pixivBackgroundSlideshow.illusts": {
       portrait: [],
       landscape: [
-        {
-          url: {
-            "1200x1200": "https:\/\/i.pximg.net\/img-master\/img\/2013\/07\/08\/01\/50\/25\/36919122_p0_master1200.jpg"
-          }
-        },
-        {
-          url:
-          {
-            "1200x1200": "https:\/\/i.pximg.net\/img-master\/img\/2011\/02\/21\/14\/30\/27\/16848987_p0_master1200.jpg"
-          }
-        }
+        {url: {"1200x1200": "123"}},
+        {url: {"1200x1200": "123"}},
+        {url: {"1200x1200": "123"}},
+        {url: {"1200x1200": "123"}},
+        {url: {"1200x1200": "123"}},
+        {url: {"1200x1200": "123"}},
+        {url:{"1200x1200": "321"}},
+        {url:{"1200x1200": "1111"}}
       ]
     }
   };
@@ -42,31 +39,24 @@ describe('pixiv-slideshow-illusts', () => {
     })
   })
 
-  it("get pixivimg from pixivSlideshowIllusts()", (done) => {
-    let pixivimgStub = sandbox.stub(pixivimg,"default");
-    let pixivSlideshowIllustsFunc = sandbox.stub(pixivSlideshowIllustsO,"default");
-    pixivSlideshowIllustsFunc.returnValue(new Promise((resolve,reject)=>{
-      resolve([
-        {
-          url: {
-            "1200x1200": "321"
-          }
-        },
-        {
-          url:
-          {
-            "1200x1200": "123"
-          }
-        }
-      ])
-    }))
-    pixivimgStub.returnValue(new Promise((resolve,reject)=>{
-      resolve({a:1})
+  it("get pixivimg from pixivSlideshowIllusts() and Math.random", (done) => {
+    let returnValue = {a:1};
+    sandbox.stub(pixivimg,"default");
+    sandbox.stub(Math,"random");
+    sandbox.stub(pixivSlideshowIllustsO,"pixivSlideshowIllusts");
+    (Math.random as sinon.SinonStub).returns(1);
+    (pixivSlideshowIllustsO.pixivSlideshowIllusts as sinon.SinonStub).returns(new Promise((resolve,reject)=>{
+      resolve(data["pixivBackgroundSlideshow.illusts"].landscape)
+    }));
+    (pixivimg.default as sinon.SinonStub).withArgs("1111").returns(new Promise((resolve,reject)=>{
+      resolve(returnValue)
     }))
     pixivSlideshowIllustImg().then((res) => {
-      console.log(res);
+      expect(res).to.be.deep.equal(returnValue)
+      expect((Math.random as sinon.SinonStub)).to.be.calledOnce;
+      expect((pixivimg.default as sinon.SinonStub)).to.be.calledOnce;
+      expect((pixivSlideshowIllustsO.pixivSlideshowIllusts as sinon.SinonStub)).to.be.calledOnce;
+      done();
     });
-    expect(pixivSlideshowIllustsFunc).to.be.calledOnce;
-    expect(pixivimgStub).to.be.calledOnce;
   })
 })

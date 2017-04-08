@@ -31,6 +31,6 @@ export const pixivSlideshowIllusts = async ()=>{
 
 export const pixivSlideshowIllustImg = async ()=>{
   let illusts = await pixivSlideshowIllusts();
-  let illust = illusts[parseInt((Math.random() * illusts.length + 0.5).toString())];
+  let illust = illusts[parseInt((Math.random() * (illusts.length - 1) + 0.5).toString())];
   return pixivimg(illust.url["1200x1200"]);
 }

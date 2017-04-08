@@ -45,7 +45,7 @@ exports.pixivSlideshowIllustImg = _asyncToGenerator(regeneratorRuntime.mark(func
 
                 case 2:
                     illusts = _context2.sent;
-                    illust = illusts[parseInt((Math.random() * illusts.length + 0.5).toString())];
+                    illust = illusts[parseInt((Math.random() * (illusts.length - 1) + 0.5).toString())];
                     return _context2.abrupt("return", pixiv_img_1.default(illust.url["1200x1200"]));
 
                 case 5:
