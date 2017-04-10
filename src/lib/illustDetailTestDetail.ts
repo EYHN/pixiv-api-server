@@ -1054,5 +1054,6 @@ const illustDetailTestDetail: any[] = [
     "visible": true,
     "isMuted": false
   }
+  ]
 
 export default illustDetailTestDetail;
