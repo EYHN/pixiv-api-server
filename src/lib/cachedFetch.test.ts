@@ -34,7 +34,6 @@ describe('cachedFetch', () => {
       status: 404
     });
     fetchMock.getOnce(url, response)
-    console.log(response.bodyUsed);
     let res = await cachedFetch.default(url);
     let json = await res.json();
     expect(json).to.be.deep.equal(data);

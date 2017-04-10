@@ -13,6 +13,7 @@ var InjectionMiddlewares = function InjectionMiddlewares(app) {
     router.get('/slideshow', slideshow_1.slideshow);
     router.post('/slideshow', slideshow_1.slideshowREST);
     router.get('/illustDetail', illustDetail_1.illustDetail);
+    router.post('/illustDetail', illustDetail_1.illustDetailsREST);
     app.use(log_1.default);
     app.use(router.routes()).use(router.allowedMethods());
 };
