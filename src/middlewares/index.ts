@@ -1,4 +1,4 @@
-import { illustDetail } from './illustDetail';
+import { illustDetail, illustDetailsREST } from './illustDetail';
 import { slideshow, slideshowREST } from './slideshow';
 import log from './log';
 import pximg from './pximg';
@@ -12,6 +12,7 @@ const InjectionMiddlewares = (app: koa) => {
   router.get('/slideshow', slideshow)
   router.post('/slideshow', slideshowREST)
   router.get('/illustDetail', illustDetail)
+  router.post('/illustDetail', illustDetailsREST)
 
   app.use(log);
 

@@ -31,4 +31,31 @@ exports.illustDetail = function () {
         return _ref.apply(this, arguments);
     };
 }();
+exports.illustDetailsREST = function () {
+    var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(ctx) {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+            while (1) {
+                switch (_context2.prev = _context2.next) {
+                    case 0:
+                        ctx.type = 'application/json; charset=utf-8';
+                        ctx.set('Cache-Control', 'max-age=31536000, public');
+                        ctx.status = 200;
+                        _context2.next = 5;
+                        return illustDetail_1.getDetailillusts();
+
+                    case 5:
+                        ctx.response.body = _context2.sent;
+
+                    case 6:
+                    case "end":
+                        return _context2.stop();
+                }
+            }
+        }, _callee2, undefined);
+    }));
+
+    return function (_x2) {
+        return _ref2.apply(this, arguments);
+    };
+}();
 //# sourceMappingURL=illustDetail.js.map

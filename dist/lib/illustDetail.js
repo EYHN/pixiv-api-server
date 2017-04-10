@@ -43,59 +43,63 @@ exports.updateDetailIllust = _asyncToGenerator(regeneratorRuntime.mark(function 
                 case 7:
                     json = _context.sent;
 
-                    newIllusts.push(json);
+                    newIllusts.push.apply(newIllusts, _toConsumableArray(json.illusts));
+                    _context.next = 11;
+                    return wait_1.default(100);
 
-                case 9:
+                case 11:
                     if (!true) {
-                        _context.next = 20;
+                        _context.next = 22;
                         break;
                     }
 
                     if (pixiv.hasNext()) {
-                        _context.next = 12;
+                        _context.next = 14;
                         break;
                     }
 
-                    return _context.abrupt("break", 20);
-
-                case 12:
-                    _context.next = 14;
-                    return pixiv.next();
+                    return _context.abrupt("break", 22);
 
                 case 14:
+                    _context.next = 16;
+                    return pixiv.next();
+
+                case 16:
                     _json = _context.sent;
 
                     newIllusts.push.apply(newIllusts, _toConsumableArray(_json.illusts));
-                    _context.next = 18;
-                    return wait_1.default(10);
-
-                case 18:
-                    _context.next = 9;
-                    break;
+                    _context.next = 20;
+                    return wait_1.default(100);
 
                 case 20:
-                    DetailIllusts = newIllusts;
-                    logger_1.default.info('update detail illust finish !');
-                    _context.next = 27;
+                    _context.next = 11;
                     break;
 
-                case 24:
-                    _context.prev = 24;
+                case 22:
+                    DetailIllusts = newIllusts;
+                    logger_1.default.info('update detail illust finish !');
+                    _context.next = 29;
+                    break;
+
+                case 26:
+                    _context.prev = 26;
                     _context.t0 = _context["catch"](4);
 
-                    logger_1.default.error(_context.t0, { data: {
+                    logger_1.default.error(_context.t0, {
+                        data: {
                             "newIllusts": newIllusts
-                        } }, 'update detail illust finish !');
+                        }
+                    }, 'update detail illust finish !');
 
-                case 27:
+                case 29:
                     updating = false;
 
-                case 28:
+                case 30:
                 case "end":
                     return _context.stop();
             }
         }
-    }, _callee, undefined, [[4, 24]]);
+    }, _callee, undefined, [[4, 26]]);
 }));
 var defaultDetailIllustOption = {
     size: "medium"
@@ -105,9 +109,18 @@ exports.detailillust = function () {
 
     var DetailIllustOption = Object.assign({}, defaultDetailIllustOption, option);
     if (DetailIllusts.length == 0) {
+        exports.updateDetailIllust();
         return;
     }
-    var imgsrc = DetailIllusts[utils.random(0, DetailIllusts.length - 1)].imageUrls[DetailIllustOption.size];
+    var Illust = DetailIllusts[utils.random(0, DetailIllusts.length - 1)];
+    if (typeof Illust.imageUrls === "undefined") {
+        exports.updateDetailIllust();
+        return;
+    }
+    var imgsrc = Illust.imageUrls[DetailIllustOption.size];
     return pixiv_img_1.default(imgsrc);
+};
+exports.getDetailillusts = function () {
+    return DetailIllusts;
 };
 //# sourceMappingURL=illustDetail.js.map

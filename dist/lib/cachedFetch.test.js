@@ -72,22 +72,21 @@ describe('cachedFetch', function () {
                         });
 
                         fetchMock.getOnce(url, response);
-                        console.log(response.bodyUsed);
-                        _context2.next = 5;
+                        _context2.next = 4;
                         return cachedFetch.default(url);
 
-                    case 5:
+                    case 4:
                         res = _context2.sent;
-                        _context2.next = 8;
+                        _context2.next = 7;
                         return res.json();
 
-                    case 8:
+                    case 7:
                         json = _context2.sent;
 
                         test_helper_1.expect(json).to.be.deep.equal(data);
                         test_helper_1.expect(cachedFetch.Storage.size).to.be.eql(0);
 
-                    case 11:
+                    case 10:
                     case "end":
                         return _context2.stop();
                 }
