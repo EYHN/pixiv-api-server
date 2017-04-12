@@ -1,10 +1,24 @@
 define({ "api": [
   {
     "type": "get",
-    "url": "/slideshow",
+    "url": "/illustDetail",
     "title": "Pixiv日排行榜",
     "name": "GetIllustDetail",
     "group": "pixiv",
+    "description": "<p><a href=\"https://lit-brushlands-42343.herokuapp.com/illustDetail?size=original\">https://lit-brushlands-42343.herokuapp.com/illustDetail?size=original</a></p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "size",
+            "description": "<p>图片的大小 &quot;squareMedium&quot; | &quot;medium&quot; | &quot;large&quot; | &quot;original&quot;</p>"
+          }
+        ]
+      }
+    },
     "version": "0.0.0",
     "filename": "src/middlewares/index.ts",
     "groupTitle": "pixiv"
@@ -15,6 +29,11 @@ define({ "api": [
     "title": "Pixiv日排行榜 json数据",
     "name": "GetIllustDetailREST",
     "group": "pixiv",
+    "sampleRequest": [
+      {
+        "url": "https://lit-brushlands-42343.herokuapp.com/slideshow"
+      }
+    ],
     "success": {
       "fields": {
         "Success 200": [
@@ -38,6 +57,7 @@ define({ "api": [
     "title": "Pixiv幻灯片",
     "name": "GetSlideshow",
     "group": "pixiv",
+    "description": "<p><a href=\"https://lit-brushlands-42343.herokuapp.com/slideshow\">https://lit-brushlands-42343.herokuapp.com/slideshow</a></p>",
     "version": "0.0.0",
     "filename": "src/middlewares/index.ts",
     "groupTitle": "pixiv"
@@ -45,9 +65,10 @@ define({ "api": [
   {
     "type": "get",
     "url": "/pximg",
-    "title": "Pixiv图片反向代理",
+    "title": "Pixiv图片代理",
     "name": "getPximg",
     "group": "pixiv",
+    "description": "<p><a href=\"https://lit-brushlands-42343.herokuapp.com/pximg?src=https://i.pximg.net/img-original/img/2017/04/05/00/00/02/62258773_p0.png\">https://lit-brushlands-42343.herokuapp.com/pximg?src=https://i.pximg.net/img-original/img/2017/04/05/00/00/02/62258773_p0.png</a></p>",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -73,7 +94,7 @@ define({ "api": [
     "group": "pixiv",
     "sampleRequest": [
       {
-        "url": "https://lit-brushlands-42343.herokuapp.com/pximg"
+        "url": "https://lit-brushlands-42343.herokuapp.com/slideshow"
       }
     ],
     "success": {

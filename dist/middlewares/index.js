@@ -12,9 +12,13 @@ require("babel-polyfill");
 var InjectionMiddlewares = function InjectionMiddlewares(app) {
   var router = new Router();
   /**
-   * @api {get} /pximg Pixiv图片反向代理
+   * @api {get} /pximg Pixiv图片代理
    * @apiName getPximg
    * @apiGroup pixiv
+   *
+   * @apiDescription
+   *
+   * <a href="https://lit-brushlands-42343.herokuapp.com/pximg?src=https://i.pximg.net/img-original/img/2017/04/05/00/00/02/62258773_p0.png">https://lit-brushlands-42343.herokuapp.com/pximg?src=https://i.pximg.net/img-original/img/2017/04/05/00/00/02/62258773_p0.png</a>
    *
    * @apiParam {String} src 图片的链接.
    */
@@ -23,6 +27,9 @@ var InjectionMiddlewares = function InjectionMiddlewares(app) {
    * @api {get} /slideshow Pixiv幻灯片
    * @apiName GetSlideshow
    * @apiGroup pixiv
+   * @apiDescription
+   *
+   * <a href="https://lit-brushlands-42343.herokuapp.com/slideshow">https://lit-brushlands-42343.herokuapp.com/slideshow</a>
    *
    */
   router.get('/slideshow', slideshow_1.slideshow);
@@ -30,21 +37,28 @@ var InjectionMiddlewares = function InjectionMiddlewares(app) {
    * @api {POST} /slideshow Pixiv幻灯片 json数据
    * @apiName getPximgREST
    * @apiGroup pixiv
-   * @apiSampleRequest https://lit-brushlands-42343.herokuapp.com/pximg
+   * @apiSampleRequest https://lit-brushlands-42343.herokuapp.com/slideshow
    *
    * @apiSuccess {Object[]} data json数据.
    */
   router.post('/slideshow', slideshow_1.slideshowREST);
   /**
-   * @api {get} /slideshow Pixiv日排行榜
+   * @api {get} /illustDetail Pixiv日排行榜
    * @apiName GetIllustDetail
    * @apiGroup pixiv
+   *
+   * @apiDescription
+   * <a href="https://lit-brushlands-42343.herokuapp.com/illustDetail?size=original">https://lit-brushlands-42343.herokuapp.com/illustDetail?size=original</a>
+   *
+   * @apiParam {String} size 图片的大小 "squareMedium" | "medium" | "large" | "original"
    */
   router.get('/illustDetail', illustDetail_1.illustDetail);
   /**
    * @api {POST} /slideshow Pixiv日排行榜 json数据
    * @apiName GetIllustDetailREST
    * @apiGroup pixiv
+   *
+   * @apiSampleRequest https://lit-brushlands-42343.herokuapp.com/slideshow
    *
    * @apiSuccess {Object[]} data json数据.
    */
