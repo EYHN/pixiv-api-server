@@ -54,8 +54,9 @@ const InjectionMiddlewares = (app: koa) => {
 
   app.use(log);
 
-  app.use((ctx)=>{
+  app.use(async (ctx, next)=>{
     ctx.set("Access-Control-Allow-Origin","*");
+    await next();
   })
 
   app
