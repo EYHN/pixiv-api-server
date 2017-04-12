@@ -1,3 +1,6 @@
+import { imageSizeE } from '../interface/imageUrlsI';
+import { getImageFromUrls, getSingleImageFromIllust } from './getIllustPage';
+import { illustI } from '../interface/illustI';
 import pixivimg from './pixiv-img';
 import wait from '../util/wait';
 import * as later from 'later';
@@ -7,7 +10,7 @@ const utils = require('utility');
 
 const pixiv = new Pixiv();
 
-let DetailIllusts: any = [];
+let DetailIllusts:illustI[] = [];
 
 let updating = false;
 
@@ -17,20 +20,20 @@ export const setUpdateTimer = (onHour: number) => {
 }
 
 export const updateDetailIllust = async () => {
-  let newIllusts = new Array();
+  let newIllusts:illustI[] = [];
   if (updating) {
     return;
   }
   updating = true;
   try {
-    const json = await pixiv.illustRanking();
+    const json = await pixiv.illustRanking() as {illusts:illustI[]};
     newIllusts.push(...json.illusts);
     await wait(100);
     while (true) { // eslint-disable-line no-constant-condition
       if (!pixiv.hasNext()) {
         break;
       }
-      const json = await pixiv.next();
+      const json = await pixiv.next() as {illusts:illustI[]};
       newIllusts.push(...json.illusts);
       await wait(100);
     }
@@ -47,11 +50,11 @@ export const updateDetailIllust = async () => {
 }
 
 interface detailillustI {
-  size?: "squareMedium" | "medium" | "large",
+  size?: imageSizeE
 }
 
 const defaultDetailIllustOption: detailillustI = {
-  size: "medium"
+  size: imageSizeE.large
 }
 
 export const detailillust = (option: detailillustI = defaultDetailIllustOption) => {
@@ -68,7 +71,7 @@ export const detailillust = (option: detailillustI = defaultDetailIllustOption) 
     updateDetailIllust();
     return
   }
-  let imgsrc = Illust.imageUrls[DetailIllustOption.size];
+  let imgsrc = getSingleImageFromIllust(Illust,DetailIllustOption.size);
   return pixivimg(imgsrc);
 }
 

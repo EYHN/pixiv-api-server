@@ -5,6 +5,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var imageUrlsI_1 = require("../interface/imageUrlsI");
+var getIllustPage_1 = require("./getIllustPage");
 var pixiv_img_1 = require("./pixiv-img");
 var wait_1 = require("../util/wait");
 var later = require("later");
@@ -25,7 +27,7 @@ exports.updateDetailIllust = _asyncToGenerator(regeneratorRuntime.mark(function 
         while (1) {
             switch (_context.prev = _context.next) {
                 case 0:
-                    newIllusts = new Array();
+                    newIllusts = [];
 
                     if (!updating) {
                         _context.next = 3;
@@ -102,7 +104,7 @@ exports.updateDetailIllust = _asyncToGenerator(regeneratorRuntime.mark(function 
     }, _callee, undefined, [[4, 26]]);
 }));
 var defaultDetailIllustOption = {
-    size: "medium"
+    size: imageUrlsI_1.imageSizeE.large
 };
 exports.detailillust = function () {
     var option = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultDetailIllustOption;
@@ -117,7 +119,7 @@ exports.detailillust = function () {
         exports.updateDetailIllust();
         return;
     }
-    var imgsrc = Illust.imageUrls[DetailIllustOption.size];
+    var imgsrc = getIllustPage_1.getSingleImageFromIllust(Illust, DetailIllustOption.size);
     return pixiv_img_1.default(imgsrc);
 };
 exports.getDetailillusts = function () {

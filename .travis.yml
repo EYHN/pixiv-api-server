@@ -9,3 +9,5 @@ install:
 before_script:
   - "npm run clean"
   - "npm run build"
+after_script:
+  - "npm run coverage"

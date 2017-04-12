@@ -9,6 +9,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var imageUrlsI_1 = require("../interface/imageUrlsI");
+var getIllustPage = require("./getIllustPage");
 var logger_1 = require("./logger");
 var nextTick_1 = require("../util/nextTick");
 var pixivimg = require("./pixiv-img");
@@ -83,21 +85,22 @@ describe('illustDetail', function () {
                         illustDetail.__set__("DetailIllusts", testDate);
                         test_helper_1.sandbox.stub(illustDetail, "updateDetailIllust");
                         test_helper_1.sandbox.stub(pixivimg, "default");
-                        _context3.next = 5;
+                        test_helper_1.sandbox.stub(getIllustPage, "getSingleImageFromIllust").returns("1");
+                        _context3.next = 6;
                         return illustDetail.detailillust({
-                            size: "medium"
+                            size: imageUrlsI_1.imageSizeE.medium
                         });
 
-                    case 5:
+                    case 6:
                         res = _context3.sent;
 
                         test_helper_1.expect(pixivimg.default).to.be.calledOnce;
-                        test_helper_1.expect(pixivimg.default.args[0][0]).to.be.oneOf(testDate.map(function (value) {
-                            return value.imageUrls.medium;
-                        }));
+                        test_helper_1.expect(getIllustPage.getSingleImageFromIllust).to.be.calledOnce;
+                        test_helper_1.expect(getIllustPage.getSingleImageFromIllust.args[0][1]).to.be.equal(imageUrlsI_1.imageSizeE.medium);
+                        test_helper_1.expect(pixivimg.default.args[0][0]).to.be.equal("1");
                         test_helper_1.expect(illustDetail.updateDetailIllust.called).to.be.false;
 
-                    case 9:
+                    case 12:
                     case "end":
                         return _context3.stop();
                 }

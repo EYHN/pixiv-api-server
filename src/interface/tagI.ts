@@ -1,0 +1,3 @@
+interface tagI {
+  name:string
+}

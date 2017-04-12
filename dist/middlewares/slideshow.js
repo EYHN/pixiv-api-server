@@ -46,9 +46,12 @@ exports.slideshowREST = function () {
                         return pixiv_slideshow_illusts_1.pixivSlideshowIllusts();
 
                     case 4:
-                        ctx.response.body = _context2.sent;
+                        _context2.t0 = _context2.sent;
+                        ctx.response.body = {
+                            data: _context2.t0
+                        };
 
-                    case 5:
+                    case 6:
                     case "end":
                         return _context2.stop();
                 }

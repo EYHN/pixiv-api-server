@@ -14,5 +14,5 @@ export const slideshow = async (ctx:koa.Context)=>{
 export const slideshowREST = async (ctx:koa.Context)=>{
   ctx.type = 'application/json; charset=utf-8';
   ctx.status = 200;
-  ctx.response.body = await pixivSlideshowIllusts();
+  ctx.response.body = {data:await pixivSlideshowIllusts()};
 }

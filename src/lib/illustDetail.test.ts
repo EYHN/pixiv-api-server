@@ -1,3 +1,5 @@
+import { imageSizeE } from '../interface/imageUrlsI';
+import * as getIllustPage from './getIllustPage';
 import logger from './logger';
 import nextTick from '../util/nextTick';
 import * as pixivimg from './pixiv-img';
@@ -37,11 +39,14 @@ describe('illustDetail', () => {
     illustDetail.__set__("DetailIllusts", testDate);
     sandbox.stub(illustDetail, "updateDetailIllust");
     sandbox.stub(pixivimg, "default");
+    sandbox.stub(getIllustPage, "getSingleImageFromIllust").returns("1");
     let res = await illustDetail.detailillust({
-      size:"medium"
+      size:imageSizeE.medium
     });
-    expect((pixivimg.default as sinon.SinonStub)).to.be.calledOnce;
-    expect((pixivimg.default as sinon.SinonStub).args[0][0]).to.be.oneOf(testDate.map(value=>value.imageUrls.medium))
+    expect(pixivimg.default).to.be.calledOnce;
+    expect(getIllustPage.getSingleImageFromIllust).to.be.calledOnce
+    expect((getIllustPage.getSingleImageFromIllust as sinon.SinonStub).args[0][1]).to.be.equal(imageSizeE.medium);
+    expect((pixivimg.default as sinon.SinonStub).args[0][0]).to.be.equal("1")
     expect((illustDetail.updateDetailIllust as sinon.SinonStub).called).to.be.false;
   })
 
